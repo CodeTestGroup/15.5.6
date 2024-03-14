@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose an Attraction</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <h2>Choose an Attraction</h2>
+        <form id="attractionForm">
+            <select id="attractionSelect">
+                <option value="10">Natural Attraction</option>
+                <option value="20">Man-Made attraction</option>
+                <option value="5">Historic attraction</option>
+                <!-- Add more options as needed -->
+            </select>
+            <button type="button" onclick="calculateAndRedirect()">Next</button>
+        </form>
+
+        <script>
+            function calculateAndRedirect() {
+                const placeScore = parseInt(new URLSearchParams(window.location.search).get('placescore'));
+                const travelScore = parseInt(new URLSearchParams(window.location.search).get('travelscore'));
+                const attractionScore = parseInt(document.getElementById('attractionSelect').value);
+                window.location.href = `finish.html?placescore=${placeScore}&travelscore=${travelScore}&attractionscore=${attractionScore}`;
+            }
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finish</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <h2>Finish</h2>
+        <p id="placeScore">Place Score: </p>
+        <p id="travelScore">Travel Method Score: </p>
+        <p id="attractionScore">Attraction Score: </p>
+        <p id="totalScore">Total Score: </p>
+
+        <script>
+            // Get parameters from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const placeScore = parseInt(urlParams.get('placescore'));
+            const travelScore = parseInt(urlParams.get('travelscore'));
+            const attractionScore = parseInt(urlParams.get('attractionscore'));
+
+            // Display scores
+            document.getElementById('placeScore').textContent += placeScore;
+            document.getElementById('travelScore').textContent += travelScore;
+            document.getElementById('attractionScore').textContent += attractionScore;
+
+            // Calculate total score
+            const totalScore = placeScore + travelScore + attractionScore;
+            document.getElementById('totalScore').textContent += totalScore;
+        </script>
+    </div>
+</body>
+</html>

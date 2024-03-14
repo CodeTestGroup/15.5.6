@@ -1,0 +1,48 @@
+<html>
+<title>Welome to onntools</title>
+<link rel="icon" type="image/x-icon" href="logo.PNG">
+<link rel="stylesheet" href="good.css">
+<link rel="stylesheet" href="good.css">
+<style>
+        body {
+            text-align: center;
+        }
+    </style>
+<style>
+    h1 {
+  color: #0773d7;
+  font-size: 30px;
+  width: 100%;
+  margin-top: -15px;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+</style>
+<script>
+    var colors = ["red", "blue", "green", "pink", "cyan", "white"];
+    var colorIndex = 0;
+    function changeColor() {
+        var col = document.getElementById("body");
+        if( colorIndex >= colors.length ) {
+            colorIndex = 0;
+        }
+        col.style.backgroundColor = colors[colorIndex];
+        colorIndex++;
+    }
+</script>
+<select onChange="window.location.href=this.value">
+    <option value="">Links</option>
+    <option value="help.html">Help page</option>
+    <option value="about.html">About</option>
+    <option value="index.html">Home page</option>
+</select><br>
+
+<body id='body'>
+<input style="background-color:red; border-color:blue; color:white" type="button" onclick="changeColor()" value="Change background colour"/>
+<p></p>
+<h1>404 not found</h1>
+
+<p></p>
+
+</html>

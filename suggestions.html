@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suggestions - KatyFun.org</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: orange; /* Orange background */
+    color: black; /* Black text color */
+  }
+
+  #content {
+    padding: 20px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .suggestion {
+    display: inline-block;
+    margin: 0 20px;
+    cursor: pointer;
+  }
+
+  .suggestion img {
+    width: 200px; /* Adjust image size as needed */
+    height: 200px;
+    border-radius: 10px;
+    border: 2px solid black; /* Black border */
+    transition: transform 0.3s ease;
+  }
+
+  .suggestion img:hover {
+    transform: scale(1.1);
+  }
+</style>
+</head>
+<body>
+<div id="content">
+  <h1>Game Suggestions</h1>
+  <div class="suggestion" onclick="loadGame('game1.html')">
+    <img src="images/suggestion1.jpg" alt="Suggestion 1">
+  </div>
+  <div class="suggestion" onclick="loadGame('game2.html')">
+    <img src="images/suggestion2.jpg" alt="Suggestion 2">
+  </div>
+</div>
+
+<script>
+function loadGame(url) {
+  window.location.href = url;
+}
+</script>
+</body>
+</html>

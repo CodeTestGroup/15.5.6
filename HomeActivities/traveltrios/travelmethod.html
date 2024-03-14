@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select travel method</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <h2>Select travel method</h2>
+        <form id="methodForm">
+            <select id="methodSelect">
+                <option value="15">Plane</option>
+                <option value="1">Walk</option>
+                <option value="7">Drive</option>
+                <option value="20">Boat</option>
+                <!-- Add more options as needed -->
+            </select>
+            <button type="button" onclick="calculateAndRedirect()">Next</button>
+        </form>
+
+        <script>
+            function calculateAndRedirect() {
+                const placeScore = parseInt(new URLSearchParams(window.location.search).get('placescore'));
+                const travelScore = parseInt(document.getElementById('methodSelect').value);
+                window.location.href = `whattosee.html?placescore=${placeScore}&travelscore=${travelScore}`;
+            }
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play</title>
+  <style>
+    .change-size-btn {
+      background-color: #555; /* Dark mode button background color */
+      color: #fff; /* Dark mode button text color */
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #333; /* Dark mode background color */
+      color: #fff; /* Dark mode text color */
+    }
+    canvas {
+      border: 1px solid #fff; /* White border for visibility */
+    }
+    #inventory {
+      width: 200px;
+      border: 1px solid #fff; /* White border for visibility */
+      padding: 10px;
+    }
+    .inventory-item img {
+      width: 50px; /* Adjust as needed */
+      height: 50px; /* Adjust as needed */
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .input-fields {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="buildingCanvas" width="600" height="400" ondrop="drop(event)" ondragover="allowDrop(event)" onmousemove="mouseMove(event)"></canvas>
+  <div id="inventory">
+    <h2>Inventory</h2>
+    <div class="inventory-item" id="Stone" draggable="true" ondragstart="drag(event)"><img src="images/stone.png" alt="Stone"></div>
+    <div class="inventory-item" id="Wood" draggable="true" ondragstart="drag(event)"><img src="images/wood.png" alt="Wood"></div>
+    <div class="inventory-item" id="Glass" draggable="true" ondragstart="drag(event)"><img src="images/glass.png" alt="Glass"></div>
+    <div class="inventory-item" id="Grass" draggable="true" ondragstart="drag(event)"><img src="images/grass.png" alt="Grass"></div>
+    <div class="inventory-item" id="Water" draggable="true" ondragstart="drag(event)"><img src="images/water.png" alt="Water"></div>
+  </div>
+  <button id="deleteModeBtn" onclick="toggleDeleteMode()" class="change-size-btn">Delete Mode</button>
+  <button id="changeSizeBtn" onclick="toggleSizeInput()" class="change-size-btn">Change Size</button>
+  <div class="input-fields">
+    <label for="canvasWidth">Canvas Width:</label>
+    <input type="number" id="canvasWidth" value="600">
+    <label for="canvasHeight">Canvas Height:</label>
+    <input type="number" id="canvasHeight" value="400">
+    <button onclick="resizeCanvas()" class="change-size-btn">Change</button>
+  </div>
+
+  <script>
+    let deleteMode = false;
+    let lastMousePosition = { x: 0, y: 0 };
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+      var item = ev.target.id;
+      console.log("Item:", item); // Debugging line
+      ev.dataTransfer.setData("text", item);
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      if (deleteMode) return; // If in delete mode, don't drop
+      var data = ev.dataTransfer.getData("text");
+      var canvas = document.getElementById("buildingCanvas");
+      var ctx = canvas.getContext("2d");
+      var img = new Image();
+      img.src = data.toLowerCase(); // Corrected image source
+      img.onload = function() {
+        // Adjust the size as needed using CSS
+        var width = 50; // Default width
+        var height = 50; // Default height
+        ctx.drawImage(img, ev.clientX - canvas.offsetLeft, ev.clientY - canvas.offsetTop, width, height);
+      };
+    }
+
+
+
+    function resizeCanvas() {
+      const canvasWidth = document.getElementById('canvasWidth').value;
+      const canvasHeight = document.getElementById('canvasHeight').value;
+      const canvas = document.getElementById('buildingCanvas');
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
+    }
+
+    function mouseMove(ev) {
+      if (!deleteMode) return; // If not in delete mode, return
+      var canvas = document.getElementById("buildingCanvas");
+      var ctx = canvas.getContext("2d");
+      var x = ev.clientX - canvas.offsetLeft;
+      var y = ev.clientY - canvas.offsetTop;
+      // Clear the previous square
+      clearRedSquare();
+      // Draw the new square
+      ctx.fillStyle = "red";
+      ctx.fillRect(x - 25, y - 25, 50, 50);
+      // Update the last mouse position
+      lastMousePosition.x = x;
+      lastMousePosition.y = y;
+    }
+
+    function clearRedSquare() {
+      var canvas = document.getElementById("buildingCanvas");
+      var ctx = canvas.getContext("2d");
+      var x = lastMousePosition.x - 25;
+      var y = lastMousePosition.y - 25;
+      ctx.clearRect(x, y, 50, 50); // Clear the red square
+    }
+
+    function toggleDeleteMode() {
+      deleteMode = !deleteMode;
+      const deleteModeBtn = document.getElementById('deleteModeBtn');
+      deleteModeBtn.textContent = deleteMode ? 'Exit Delete Mode' : 'Delete Mode';
+      if (!deleteMode) { // Clear the red square when exiting delete mode
+        clearRedSquare();
+      }
+    }
+    function toggleSizeInput() {
+  var div = document.querySelector(".input-fields"); // Use .input-fields instead of #input-fields
+  // Toggle visibility by toggling the "display" style property
+  if (div.style.display === "none") {
+    div.style.display = "block";
+  } else {
+    div.style.display = "none";
+  }
+}
+
+  </script>
+</body>
+</html>

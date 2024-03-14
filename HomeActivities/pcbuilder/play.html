@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="styles.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick CPU</title>
+</head>
+<body>
+<div class="container">
+    <h2>Pick CPU</h2>
+    <select id="cpuSelect">
+        <option value="0">CPU</option>
+        <option value="100">Ryzen 7</option>
+        <option value="10">Intel Core 2 Duo</option>
+        <option value="115">Intel Core I5</option>
+        <option value="75">Ryzen 5</option>
+        <option value="200">Intel Core I9</option>
+        <option value="135">Ryzen 9</option>
+        <option value="75">Intel Core I3</option>
+        <option value="165">Intel Core I7</option>
+        <option value="50">Ryzen 3</option>
+        <!-- Add more CPU options -->
+    </select>
+    <select id="speedSelect">
+        <option value="0">SPEED</option>
+        <option value="100">3 GHZ</option>
+        <option value="35">1 GHZ</option>
+        <option value="135">4 GHZ</option>
+        <option value="75">2 GHZ</option>
+        <option value="80">2.5 GHZ</option>
+        <option value="50">1.5 GHZ</option>
+        <option value="115">3.5 GHZ</option>
+        <!-- Add more speed options -->
+    </select>
+    <button onclick="calculateCPUScore()">Next</button>
+</div>
+    <script>
+        function calculateCPUScore() {
+            var cpuScore = parseInt(document.getElementById('cpuSelect').value);
+            var speedScore = parseInt(document.getElementById('speedSelect').value);
+            var totalScore = cpuScore + speedScore;
+            window.location.href = "ram.html?cpuscore=" + totalScore;
+        }
+    </script>
+</body>
+</html>

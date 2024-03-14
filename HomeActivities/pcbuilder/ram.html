@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="styles.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select RAM</title>
+</head>
+<body>
+<div class="container">
+    <h2>Select RAM</h2>
+    <select id="ramTypeSelect">
+        <option value="0">TYPE</option>
+        <option value="10">DDR 1</option>
+        <option value="50">DDR 3</option>
+        <option value="125">DDR 5</option>
+        <option value="25">DDR 2</option>
+        <option value="85">DDR 4</option>
+        <!-- Add more RAM type options -->
+    </select>
+    <select id="ramCapacitySelect">
+        <option value="0">CAPACITY</option>
+        <option value="35">6 GB</option>
+        <option value="5">1 GB</option>
+        <option value="50">8 GB</option>
+        <option value="20">4 GB</option>
+        <option value="125">64 GB</option>
+        <option value="65">10 GB</option>
+        <option value="90">32 GB</option>
+        <option value="75">16 GB</option>
+        <option value="15">2 GB</option>
+        <!-- Add more RAM capacity options -->
+    </select>
+    <button onclick="calculateRAMScore()">Next</button>
+</div>
+    <script>
+        function calculateRAMScore() {
+            var ramTypeScore = parseInt(document.getElementById('ramTypeSelect').value);
+            var ramCapacityScore = parseInt(document.getElementById('ramCapacitySelect').value);
+            var totalScore = ramTypeScore + ramCapacityScore;
+            var urlParams = new URLSearchParams(window.location.search);
+            var cpuScore = urlParams.get('cpuscore');
+            window.location.href = "case.html?cpuscore=" + cpuScore + "&ramscore=" + totalScore;
+        }
+    </script>
+</body>
+</html>

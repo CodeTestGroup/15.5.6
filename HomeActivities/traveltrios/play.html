@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where do you want to go?</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <h2>Where do you want to go?</h2>
+        <form id="playForm">
+            <select id="placeSelect">
+                <option value="25">USA</option>
+                <option value="20">Japan</option>
+                <option value="17">Australia</option>
+                <option value="15">Europe</option>
+                <option value="20">UK</option>
+                <!-- Add more options as needed -->
+            </select>
+            <button type="button" onclick="calculateAndRedirect()">Next</button>
+        </form>
+
+        <script>
+            function calculateAndRedirect() {
+                const placeScore = parseInt(document.getElementById('placeSelect').value);
+                window.location.href = `travelmethod.html?placescore=${placeScore}`;
+            }
+        </script>
+    </div>
+</body>
+</html>

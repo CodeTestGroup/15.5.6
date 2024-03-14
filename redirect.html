@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirect Page</title>
+</head>
+<body>
+<script>
+// Get the URL parameter
+const urlParams = new URLSearchParams(window.location.search);
+const urlToRedirect = urlParams.get('url');
+
+// Check if the URL parameter exists
+if (urlToRedirect) {
+    // Redirect to the specified URL
+    window.location.href = urlToRedirect;
+} else {
+    // If no URL parameter is provided, you can redirect to a default URL or display an error message
+    console.error('No URL parameter provided.');
+}
+</script>
+</body>
+</html>

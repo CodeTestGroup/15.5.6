@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="styles.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Case</title>
+</head>
+<body>
+<div class="container">
+    <h2>Select Case</h2>
+    <select id="caseSizeSelect">
+        <option value="0">SIZE</option>
+        <option value="30">ATX</option>
+        <option value="30">SFF</option>
+        <option value="30">USFF</option>
+        <!-- Add more case size options -->
+    </select>
+    <select id="rgbSelect">
+        <option value="0">RGB</option>
+        <option value="25">10%</option>
+        <option value="50">100%</option>
+        <option value="30">20%</option>
+        <option value="45">60%</option>
+        <option value="45">40%</option>
+        <option value="30">80%</option>
+        <!-- Add more RGB options -->
+    </select>
+
+    <button onclick="calculateCaseScore()">Next</button>
+</div>
+    <script>
+        function calculateCaseScore() {
+            var caseSizeScore = parseInt(document.getElementById('caseSizeSelect').value);
+            var rgbScore = parseInt(document.getElementById('rgbSelect').value);
+            var totalScore = caseSizeScore + rgbScore;
+            var urlParams = new URLSearchParams(window.location.search);
+            var cpuScore = urlParams.get('cpuscore');
+            var ramScore = urlParams.get('ramscore');
+            window.location.href = "finish.html?cpuscore=" + cpuScore + "&ramscore=" + ramScore + "&casescore=" + totalScore;
+        }
+    </script>
+</body>
+</html>

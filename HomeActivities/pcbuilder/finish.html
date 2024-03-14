@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="styles.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finish</title>
+</head>
+<body>
+<div class="container">
+    <h1>Final Scores</h1>
+    <p>CPU Score: <span id="cpuScoreDisplay"></span></p>
+    <p>RAM Score: <span id="ramScoreDisplay"></span></p>
+    <p>Case Score: <span id="caseScoreDisplay"></span></p>
+    <h3>Total Score: <span id="totalScoreDisplay"></span></h3>
+    <a href="index.html">Home</a>
+</div>
+    <script>
+        var urlParams = new URLSearchParams(window.location.search);
+        var cpuScore = parseInt(urlParams.get('cpuscore'));
+        var ramScore = parseInt(urlParams.get('ramscore'));
+        var caseScore = parseInt(urlParams.get('casescore'));
+        var totalScore = cpuScore + ramScore + caseScore;
+
+        document.getElementById('cpuScoreDisplay').innerText = cpuScore;
+        document.getElementById('ramScoreDisplay').innerText = ramScore;
+        document.getElementById('caseScoreDisplay').innerText = caseScore;
+        document.getElementById('totalScoreDisplay').innerText = totalScore;
+    </script>
+</body>
+</html>

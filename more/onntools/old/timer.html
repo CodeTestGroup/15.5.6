@@ -1,0 +1,198 @@
+<html>
+<title>Welome to onntools</title>
+<link rel="icon" type="image/x-icon" href="logo.PNG">
+<link rel="stylesheet" href="good.css">
+<link rel="stylesheet" href="good.css">
+<style>
+        body {
+            text-align: center;
+        }
+    </style>
+<style>
+    h1 {
+  color: #0773d7;
+  font-size: 30px;
+  width: 100%;
+  margin-top: -15px;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+</style>
+<script>
+var colors = ["red", "blue", "green", "pink", "cyan", "white"];
+var colorIndex = 0;
+
+function changeColor() {
+    var col = document.getElementById("body");
+    if( colorIndex >= colors.length ) {
+        colorIndex = 0;
+    }
+    col.style.backgroundColor = colors[colorIndex];
+    colorIndex++;
+}
+</script>
+<select onChange="window.location.href=this.value">
+    <option value="">Links</option>
+    <option value="help.html">Help page</option>
+    <option value="about.html">About</option>
+</select>
+<select onChange="window.location.href=this.value">
+    <option value="">Mode</option>
+    <option value="induvidual.html">Individual mode</option>
+    <option value="index.html">Normal mode</option>
+    <option value="agenda.html">Agenda mode</option>
+    <option value="draw.html">Draw mode</option>
+    <option value="calculator.html">Calculator mode</option>
+    <option value="timer.html">Timer mode</option>
+</select><br>
+<body id='body'>
+        <input style="background-color:red; border-color:blue; color:white" type="button" onclick="changeColor()" value="Change background colour">
+     <input style="background-color:red; border-color:blue; color:white" type="button" onclick="window.location.reload()" value="Clear ALL notepads">
+
+<p></p>s
+<h1>Welcome to timer!</h1>
+<style>
+    /* Google fonts import link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+.wrapper{
+  user-select: none;
+}
+.wrapper .time{
+  height: 100px;
+  background: #ffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.09);
+  padding: 0 10px;
+}
+.wrapper .time span{
+  width: 100px;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 500;
+  color: #333;
+}
+.time span.colon{
+  width: 10px;
+}
+.time span.ms-colon,
+.time span.millisecond{
+  color: #7D2Ae8;
+}
+.wrapper .buttons{
+  text-align: center;
+  margin-top: 20px;
+}
+.buttons button{
+  padding: 6px 16px;
+  outline: none;
+  border: none;
+  margin: 0 5px;
+  color: #7D2Ae8;
+  background: #ffff;
+  font-size: 19px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.09);
+}
+.buttons button.active,
+.buttons button.stopActive{
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+</style>
+  <head>
+    <meta charset="UTF-8">
+   <!-- <title> Stopwatch Timer application | CodingLab </title>-->
+    <link rel="stylesheet" href="style.css">
+   </head>
+<body>
+<div class="wrapper">
+    <div class="time">
+      <span class="hour">00</span>
+      <span class="colon">:</span>
+      <span class="minute">00</span>
+      <span class="colon">:</span>
+      <span class="second">00</span>
+      <span class="colon ms-colon">:</span>
+      <span class="millisecond">00</span>
+    </div>
+    <div class="buttons">
+      <button class="start">Start</button>
+      <button class="stop">Stop</button>
+      <button class="reset">Reset</button>
+    </div>
+  </div>
+
+  <script>
+  let hr = min = sec = ms = "0" + 0,
+    startTimer;
+
+  const startBtn = document.querySelector(".start"),
+   stopBtn = document.querySelector(".stop"),
+   resetBtn = document.querySelector(".reset");
+
+   startBtn.addEventListener("click", start);
+   stopBtn.addEventListener("click", stop);
+   resetBtn.addEventListener("click", reset);
+
+  function start() {
+    startBtn.classList.add("active");
+    stopBtn.classList.remove("stopActive");
+
+    startTimer = setInterval(()=>{
+      ms++
+      ms = ms < 10 ? "0" + ms : ms;
+
+      if(ms == 100){
+        sec++;
+        sec = sec < 10 ? "0" + sec : sec;
+        ms = "0" + 0;
+      }
+      if(sec == 60){
+        min++;
+        min = min < 10 ? "0" + min : min;
+        sec = "0" + 0;
+      }
+      if(min == 60){
+        hr++;
+        hr = hr < 10 ? "0" + hr : hr;
+        min = "0" + 0;
+      }
+      putValue();
+    },10); //1000ms = 1s
+
+  }
+
+  function stop() {
+    startBtn.classList.remove("active");
+    stopBtn.classList.add("stopActive");
+    clearInterval(startTimer);
+  }
+  function reset() {
+    startBtn.classList.remove("active");
+    stopBtn.classList.remove("stopActive");
+    clearInterval(startTimer);
+    hr = min = sec = ms = "0" + 0;
+    putValue();
+  }
+
+  function putValue() {
+    document.querySelector(".millisecond").innerText = ms;
+    document.querySelector(".second").innerText = sec;
+    document.querySelector(".minute").innerText = min;
+    document.querySelector(".hour").innerText = hr;
+  }
+ </script>
+</body>
+
+
+
+
+</html>

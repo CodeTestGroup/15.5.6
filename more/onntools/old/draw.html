@@ -1,0 +1,195 @@
+<html>
+<title>Welome to onntools</title>
+<link rel="icon" type="image/x-icon" href="logo.PNG">
+<link rel="stylesheet" href="good.css">
+<link rel="stylesheet" href="good.css">
+ <style>
+        body {
+            text-align: center;
+        }
+    </style>
+
+<style>
+    h1 {
+  color: #0773d7;
+  font-size: 30px;
+  width: 100%;
+  margin-top: -15px;
+  margin-bottom: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+</style>
+
+<head>
+<script>
+var colors = ["red", "blue", "green", "pink", "cyan", "white"];
+var colorIndex = 0;
+
+function changeColor() {
+    var col = document.getElementById("body");
+    if( colorIndex >= colors.length ) {
+        colorIndex = 0;
+    }
+    col.style.backgroundColor = colors[colorIndex];
+    colorIndex++;
+}
+</script>
+     <script type="text/javascript">
+    var canvas, ctx, flag = false,
+        prevX = 0,
+        currX = 0,
+        prevY = 0,
+        currY = 0,
+        dot_flag = false;
+
+    var x = "black",
+        y = 2;
+
+    function init() {
+        canvas = document.getElementById('can');
+        ctx = canvas.getContext("2d");
+        w = canvas.width;
+        h = canvas.height;
+
+        canvas.addEventListener("mousemove", function (e) {
+            findxy('move', e)
+        }, false);
+        canvas.addEventListener("mousedown", function (e) {
+            findxy('down', e)
+        }, false);
+        canvas.addEventListener("mouseup", function (e) {
+            findxy('up', e)
+        }, false);
+        canvas.addEventListener("mouseout", function (e) {
+            findxy('out', e)
+        }, false);
+    }
+
+    function color(obj) {
+        switch (obj.id) {
+            case "green":
+                x = "green";
+                break;
+            case "blue":
+                x = "blue";
+                break;
+            case "red":
+                x = "red";
+                break;
+            case "yellow":
+                x = "yellow";
+                break;
+            case "orange":
+                x = "orange";
+                break;
+            case "black":
+                x = "black";
+                break;
+            case "white":
+                x = "white";
+                break;
+        }
+        if (x == "white") y = 14;
+        else y = 2;
+
+    }
+
+    function draw() {
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        ctx.strokeStyle = x;
+        ctx.lineWidth = y;
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+    function erase() {
+        var m = confirm("Are you sure?");
+        if (m) {
+            ctx.clearRect(0, 0, w, h);
+            document.getElementById("canvasimg").style.display = "none";
+        }
+    }
+
+    function save() {
+        document.getElementById("canvasimg").style.border = "2px solid";
+        var dataURL = canvas.toDataURL();
+        document.getElementById("canvasimg").src = dataURL;
+        document.getElementById("canvasimg").style.display = "inline";
+    }
+
+    function findxy(res, e) {
+        if (res == 'down') {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.offsetLeft;
+            currY = e.clientY - canvas.offsetTop;
+
+            flag = true;
+            dot_flag = true;
+            if (dot_flag) {
+                ctx.beginPath();
+                ctx.fillStyle = x;
+                ctx.fillRect(currX, currY, 2, 2);
+                ctx.closePath();
+                dot_flag = false;
+            }
+        }
+        if (res == 'up' || res == "out") {
+            flag = false;
+        }
+        if (res == 'move') {
+            if (flag) {
+                prevX = currX;
+                prevY = currY;
+                currX = e.clientX - canvas.offsetLeft;
+                currY = e.clientY - canvas.offsetTop;
+                draw();
+            }
+        }
+    }
+    </script>
+<select onChange="window.location.href=this.value">
+    <option value="">Links</option>
+    <option value="help.html">Help page</option>
+    <option value="about.html">About</option>
+</select>
+<select onChange="window.location.href=this.value">
+    <option value="">Mode</option>
+    <option value="induvidual.html">Individual mode</option>
+    <option value="index.html">Normal mode</option>
+    <option value="agenda.html">Agenda mode</option>
+    <option value="draw.html">Draw mode</option>
+    <option value="calculator.html">Calculator mode</option>
+    <option value="timer.html">Timer mode</option>
+</select><br>
+<body id='body'>
+      <input style="background-color:red; border-color:blue; color:white" type="button" onclick="changeColor()" value="Change background colour">
+      <input style="background-color:red; border-color:blue; color:white" type="button" onclick="window.location.reload()" value="Clear notepad">
+ <p></p>
+<h1>Welcome to onntools!</h1>
+
+
+ <html>
+
+    <body onload="init()">
+        <canvas id="text" width="600" height="600" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
+        <div style="position:absolute;top:12%;left:43%;">Color</div>
+        <div style="position:absolute;top:15%;left:45%;width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div>
+        <div style="position:absolute;top:15%;left:46%;width:10px;height:10px;background:blue;" id="blue" onclick="color(this)"></div>
+        <div style="position:absolute;top:15%;left:47%;width:10px;height:10px;background:red;" id="red" onclick="color(this)"></div>
+        <div style="position:absolute;top:17%;left:45%;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div>
+        <div style="position:absolute;top:17%;left:46%;width:10px;height:10px;background:orange;" id="orange" onclick="color(this)"></div>
+        <div style="position:absolute;top:17%;left:47%;width:10px;height:10px;background:black;" id="black" onclick="color(this)"></div>
+        <div style="position:absolute;top:20%;left:43%;">Eraser</div>
+        <div style="position:absolute;top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
+        <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
+    </body>
+    </html>
+</form><br>
+       <p>NOTE: this dosent work currently we are working on a fix</p>
+
+
+</html>

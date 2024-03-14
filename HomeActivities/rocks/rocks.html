@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rock Dragging Game</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    #background {
+        width: 100%;
+        height: 100%;
+      //  background-image: url('background.jpg'); /* You can replace 'background.jpg' with your background image */
+        background-size: cover;
+        position: absolute;
+    }
+    .rock {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        cursor: pointer;
+    }
+    #bigRock {
+        width: 200px;
+        height: 200px;
+    }
+</style>
+</head>
+<body>
+<div id="background"></div>
+
+<script>
+    // Function to generate a random position within the viewport
+    function getRandomPosition() {
+        const x = Math.random() * (window.innerWidth - 100); // Adjust 100 based on rock size
+        const y = Math.random() * (window.innerHeight - 100); // Adjust 100 based on rock size
+        return { x, y };
+    }
+
+    // Function to create a rock element
+    function createRock(src) {
+        const rock = new Image();
+        rock.src = src;
+        rock.classList.add('rock');
+        rock.draggable = true;
+
+        const position = getRandomPosition();
+        rock.style.left = position.x + 'px';
+        rock.style.top = position.y + 'px';
+
+        rock.addEventListener('dragstart', dragStart);
+
+        document.body.appendChild(rock);
+    }
+
+    // Function to handle drag start
+    function dragStart(event) {
+        event.dataTransfer.setData('text/plain', event.target.id);
+    }
+
+    // Prevent default behavior for dragover and drop
+    document.addEventListener('dragover', function(event) {
+        event.preventDefault();
+    });
+
+    document.addEventListener('drop', function(event) {
+        event.preventDefault();
+        const id = event.dataTransfer.getData('text/plain');
+        const draggableElement = document.getElementById(id);
+
+        if (draggableElement) {
+            // Calculate new position based on mouse pointer
+            const newX = event.clientX - draggableElement.width / 2;
+            const newY = event.clientY - draggableElement.height / 2;
+
+            // Set new position
+            draggableElement.style.left = newX + 'px';
+            draggableElement.style.top = newY + 'px';
+        }
+    });
+
+    // Generate rocks
+    window.onload = function() {
+        createRock('images/bigrock.jpg');
+        createRock('images/smallrock.jpg');
+        createRock('images/smallrock.jpg');
+        createRock('images/smallrock.jpg');
+    };
+</script>
+</body>
+</html>

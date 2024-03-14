@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spy Game</title>
+</head>
+<body>
+    <h1>Spy Game</h1>
+    <div id="instructions">
+        <p>Spy gets a mission to infiltrate the enemy's military.</p>
+        <p>Enlists in the military as Rank 1.</p>
+        <p>The goal is to get to Rank 19 and cancel the plans of the military.</p>
+    </div>
+    <div id="rank"></div>
+    <button id="startBtn" onclick="startGame()">Start</button>
+
+    <script>
+        let rank = 1;
+
+        function startGame() {
+            let instructionsDiv = document.getElementById("instructions");
+            let startBtn = document.getElementById("startBtn");
+            if (instructionsDiv && startBtn) {
+                instructionsDiv.style.display = "none";
+                document.getElementById("rank").innerText = "Current Rank: 1";
+                startBtn.style.display = "none";
+                checkLevel();
+            }
+        }
+
+        function levelUp() {
+            rank++;
+            document.getElementById("rank").innerText = "Current Rank: " + rank;
+            checkLevel();
+        }
+
+         function checkLevel() {
+            switch (rank) {
+                case 3:
+                    level2();
+                    break;
+                case 5:
+                    level3();
+                    break;
+                case 7:
+                    level4();
+                    break;
+                case 9:
+                    level5();
+                    break;
+                case 11:
+                    level6();
+                    break;
+                case 13:
+                    level7();
+                    break;
+                case 15:
+                    level8();
+                    break;
+                case 17:
+                    level9();
+                    break;
+                case 19:
+                    level10();
+                    break;
+            }
+        }
+
+        function level2() {
+            document.getElementById("rank").innerText = "Level 2: Grab tools to make your communication system.";
+            let button = document.createElement("button");
+            button.innerText = "Grab tools";
+            button.onclick = function() {
+                levelUp();
+            };
+            document.body.appendChild(button);
+        }
+
+        function level3() {
+            document.getElementById("rank").innerText = "Level 3: Move from Rank 3 to Rank 5.";
+            let button = document.createElement("button");
+            button.innerText = "Move to Rank 5";
+            button.onclick = function() {
+                levelUp();
+            };
+            document.body.appendChild(button);
+        }
+
+        function level4() {
+            document.getElementById("rank").innerText = "Level 4: Show a new ally the ropes and help them get a higher Rank.";
+            let button = document.createElement("button");
+            button.innerText = "Show ally the ropes";
+            button.onclick = function() {
+                levelUp();
+            };
+            document.body.appendChild(button);
+        }
+
+        function level5() {
+            document.getElementById("rank").innerText = "Level 5: Move from Rank 5 to Rank 7.";
+            let button = document.createElement("button");
+            button.innerText = "Move to Rank 7";
+            button.onclick = function() {
+                levelUp();
+            };
+            document.body.appendChild(button);
+        }
+
+        function level6() {
+            document.getElementById("rank").innerText = "Level 6: Choose how to gather intel.";
+            let button1 = document.createElement("button");
+            button1.innerText = "Continue using communication system";
+            button1.onclick = function() {
+                levelUp();
+            };
+            let button2 = document.createElement("button");
+            button2.innerText = "Figure it out through your Rank";
+            button2.onclick = function() {
+                levelUp();
+            };
+            document.body.appendChild(button1);
+            document.body.appendChild(button2);
+        }
+
+        function level7() {
+            document.getElementById("rank").innerText = "Level 7: Move from Rank 7 to Rank 9.";
+            let button = document.createElement("button");
+            button.innerText = "Move to Rank 9";
+            button.onclick = function() {
+                levelUp();
+            };
+            document.body.appendChild(button);
+        }
+
+        function level8() {
+            document.getElementById("rank").innerText = "Level 8: Decide from the earlier level 6.";
+            let button1 = document.createElement("button");
+            button1.innerText = "Continue using communication system";
+            button1.onclick = function() {
+                levelUp();
+            };
+            let button2 = document.createElement("button");
+            button2.innerText = "Figure it out through your Rank";
+            button2.onclick = function() {
+                levelUp();
+            };
+            document.body.appendChild(button1);
+            document.body.appendChild(button2);
+        }
+
+        function level9() {
+            document.getElementById("rank").innerText = "Level 9: Check on your ally and show him how to make a communication system.";
+            let button = document.createElement("button");
+            button.innerText = "Show ally how to make a communication system";
+            button.onclick = function() {
+                levelUp();
+            };
+            document.body.appendChild(button);
+        }
+
+        function level10() {
+            document.getElementById("rank").innerText = "Level 10: Decide from the earlier level 8. If you picked communication system all 3 times, you get found out and it's game over.";
+            let button1 = document.createElement("button");
+            button1.innerText = "Continue using communication system";
+            button1.onclick = function() {
+                if (rank >= 19) {
+                    alert("Congratulations! You canceled the plans of the military. Mission accomplished!");
+                } else {
+                    alert("Game over! You did not reach Rank 19.");
+                }
+            };
+            let button2 = document.createElement("button");
+            button2.innerText = "Figure it out through your Rank";
+            button2.onclick = function() {
+                if (rank >= 19) {
+                    alert("Congratulations! You canceled the plans of the military. Mission accomplished!");
+                } else {
+                    alert("Game over! You did not reach Rank 19.");
+                }
+            };
+            document.body.appendChild(button1);
+            document.body.appendChild(button2);
+        }
+    </script>
+</body>
+</html>
