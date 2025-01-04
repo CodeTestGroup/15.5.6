@@ -2,7 +2,7 @@
 // Database configuration
 $servername = "localhost";
 $username = "root";
-$password = "moomy";
+$password = "----";
 $database = "JoyPulse";
 
 // Create connection
